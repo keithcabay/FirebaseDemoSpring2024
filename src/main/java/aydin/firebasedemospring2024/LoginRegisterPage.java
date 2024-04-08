@@ -90,9 +90,7 @@ public class LoginRegisterPage {
 
         UserRecord userRecord;
         try {
-            System.out.println("here");
             userRecord = DemoApp.fauth.createUser(request);
-            System.out.println("Here");
             CurrentUser = userRecord.getUid();
             System.out.println("Successfully created new user with Firebase Uid: " + CurrentUser
                     + " check Firebase > Authentication > Users tab");
