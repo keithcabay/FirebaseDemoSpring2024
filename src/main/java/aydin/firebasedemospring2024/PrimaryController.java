@@ -30,7 +30,11 @@ public class PrimaryController {
     private TextField nameTextField;
 
     @FXML
+    private TextField phoneNumberField;
+
+    @FXML
     private TextArea outputTextArea;
+
 
     @FXML
     private Button readButton;
@@ -77,8 +81,13 @@ public class PrimaryController {
     }
 
     @FXML
-    private void switchToSecondary() throws IOException {
-        DemoApp.setRoot("secondary");
+    private void logOutClicked(){
+        try {
+            DemoApp.setRoot("loginRegisterPage");
+        } catch (IOException e) {
+            System.out.println("Failed to switch scenes.");
+            throw new RuntimeException(e);
+        }
     }
     public boolean readFirebase()
     {
@@ -98,10 +107,12 @@ public class PrimaryController {
                 for (QueryDocumentSnapshot document : documents)
                 {
                     outputTextArea.setText(outputTextArea.getText()+ document.getData().get("Name")+ " , Age: "+
-                            document.getData().get("Age")+ " \n ");
+                            document.getData().get("Age")+ " , Phone Number: "+
+                            document.getData().get("Phone-Number") + " \n ");
                     System.out.println(document.getId() + " => " + document.getData().get("Name"));
                     person  = new Person(String.valueOf(document.getData().get("Name")),
-                            Integer.parseInt(document.getData().get("Age").toString()));
+                            Integer.parseInt(document.getData().get("Age").toString()),
+                            String.valueOf(document.getData().get("Phone-Number")));
                     listOfUsers.add(person);
                 }
             }
@@ -150,6 +161,7 @@ public class PrimaryController {
         Map<String, Object> data = new HashMap<>();
         data.put("Name", nameTextField.getText());
         data.put("Age", Integer.parseInt(ageTextField.getText()));
+        data.put("Phone-Number", phoneNumberField.getText());
 
         //asynchronously write data
         ApiFuture<WriteResult> result = docRef.set(data);
