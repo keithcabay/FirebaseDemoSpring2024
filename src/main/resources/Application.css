@@ -1,0 +1,24 @@
+.root{
+    -fx-background-color: white;
+}
+
+.button{
+    -fx-background-color: #9fb3b0;
+    -fx-border-radius: 5px;
+    -fx-font-weight: 700;
+}
+
+button:hover{
+    -fx-background-color: #91c2bb;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 8, 0.5, 0, 0);
+}
+
+.text-field{
+    -fx-background-color: rgba(255, 255, 255, 0.85);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0.3, 0, 0);
+    -fx-background-insets: 0;
+}
+
+.text-field:hover{
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 8, 0.5, 0, 0);
+}
